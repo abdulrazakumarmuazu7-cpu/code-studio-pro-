@@ -1,0 +1,33 @@
+{
+  "name": "code-studio-pro",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Production PWA code editor & mobile builder with a real backend API (auth, RBAC, cloud sync, admin)",
+  "scripts": {
+    "start": "npx --yes serve -l 3000 .",
+    "serve": "python3 -m http.server 3000",
+    "test": "node tests/validate.mjs",
+    "lint": "node --check app.js && node --check sw.js && echo 'JS syntax OK'",
+    "cap:sync": "npx cap sync",
+    "build:android": "npx cap sync android && cd android && ./gradlew assembleRelease",
+    "build:aab": "npx cap sync android && cd android && ./gradlew bundleRelease",
+    "sign:aab": "jarsigner -keystore $KEYSTORE_PATH -storepass $KEYSTORE_PASSWORD -keypass $KEY_PASSWORD app-release.aab code-studio",
+    "key:gen": "keytool -genkeypair -v -keystore code-studio-release.keystore -alias code-studio -keyalg RSA -keysize 4096 -validity 10950",
+    "api": "node server/index.js",
+    "api:dev": "JWT_SECRET=dev-only-secret-dev-only-secret-dev-only PORT=8080 DATA_DIR=./data node server/index.js",
+    "test:server": "node --test server/test/",
+    "test:all": "node tests/validate.mjs && node --test server/test/"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^5.0.0",
+    "serve": "^14.2.0"
+  },
+  "dependencies": {
+    "@capacitor/core": "^5.0.0",
+    "@capacitor/android": "^5.0.0",
+    "@capacitor/ios": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "appId": "com.codestudio.pro",
+  "appName": "Code Studio Pro",
+  "webDir": ".",
+  "bundledWebRuntime": false,
+  "android": {
+    "allowMixedContent": false
+  },
+  "server": {
+    "androidScheme": "https"
+  }
+}
